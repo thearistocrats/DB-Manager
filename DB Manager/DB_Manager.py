@@ -2,6 +2,7 @@
 import sqlite3
 import tkinter as tk
 from tkinter import filedialog, simpledialog, messagebox, ttk
+from Mass_Renamer import launch_mass_renamer
 
 DB_NAME = "file_manager.db"
 
@@ -120,10 +121,16 @@ class FileTaggerApp:
         # Configure resizing
         self.frame.columnconfigure(0, weight=1)
         self.frame.columnconfigure(1, weight=2)
+        self.frame.columnconfigure(2, weight=0)
         self.frame.rowconfigure(2, weight=1)
 
         # Load initial file list
         self.refresh_file_list()
+
+        # launches mass rename
+        self.rename_button = ttk.Button(self.frame, text="✏️ Mass Rename Files", command=launch_mass_renamer)
+        self.rename_button.grid(row=0, column=2, sticky="ew")
+
 
     def refresh_file_list(self, files=None):
         self.file_listbox.delete(0, tk.END)

@@ -22,6 +22,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="DB_Manager.py" />
+    <Compile Include="mass_renamer.py" />
+    <Compile Include="file_metadata_editor.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="high level.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

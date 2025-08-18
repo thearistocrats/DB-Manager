@@ -1,0 +1,7 @@
+	# Abstract:
+DB manager for organizing a large amount of files
+works like a booru, with each file having a tagging system, and being able to filter and search by tags
+
+mass renaming system
+
+changing of metadata for files
