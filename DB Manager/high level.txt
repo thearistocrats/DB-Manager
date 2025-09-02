@@ -5,3 +5,8 @@ works like a booru, with each file having a tagging system, and being able to fi
 mass renaming system
 
 changing of metadata for files
+
+DB structure
+
+table structure
+all properties

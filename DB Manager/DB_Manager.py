@@ -1,4 +1,21 @@
 ﻿import tkinter as tk
+import sqlite3
+
+conn = sqlite3.connect("tutorial.db")
+cursor = conn.cursor()
+
+
+add_user_query = """CREATE TABLE IF NOT EXISTS users (
+                            id integer PRIMARY KEY AUTOINCREMENT,
+                            name text NOT NULL,
+                            password text NOT NULL,
+                            email text NOT NULL,
+                            age integer,
+                            gender text,
+                            address text
+                ); """  
+cursor.execute(add_user_query)
+conn.commit()
 
 
 def center_window(width, height):
@@ -61,11 +78,12 @@ class LoginWindow(tk.Frame):
         username = self.username_entry.get()
         password = self.password_entry.get()
 
-        # PLACEHOLDER (Authenticate User)
+        cursor.execute("SELECT * FROM users WHERE name=? AND password=?", (username, password))
+        user = cursor.fetchone()
 
         if user:
             # Logged in
-            MainWindow(self.master)
+            (self.master)
             self.destroy()
         else:
             print("You have typed in the wrong details")
@@ -119,7 +137,10 @@ class RegisterWindow(tk.Frame):
         submit_button.grid(row=7, column=0, sticky="w", padx=10, pady=(10, 10))
         self.pack()
         
-    def submit(self):        
+    def submit(self):
+        insert_user_data = """INSERT INTO users(name, password, email, age, gender, address)
+                              VALUES (?, ?, ?, ?, ?, ?)"""
+        
         user_data = (self.first_name_entry.get().strip(), 
                     self.password_entry.get().strip(), 
                     self.email_entry.get().strip(), 
@@ -127,7 +148,8 @@ class RegisterWindow(tk.Frame):
                     self.gender_entry.get().strip(), 
                     self.address_entry.get(1.0, tk.END).strip())
         
-      # PLACEHOLDER (Insert new user data in database)
+        cursor.execute(insert_user_data, user_data)
+        conn.commit()
 
         self.destroy()
         MainWindow(self.master)
@@ -150,7 +172,8 @@ class MainWindow(tk.Frame):
         self.pack()
 
     def generateUserList(self):
-        # PLACEHOLDER (Fetch Users Data)
+        cursor.execute("SELECT * FROM users")
+        users = cursor.fetchall()
 
         columns = ["ID", "Name", "Password", "Email", "Age", "Gender", "Address"]
         column_widths = [5, 10, 10, 30, 5, 10, 20]
