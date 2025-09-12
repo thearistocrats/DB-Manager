@@ -1,5 +1,7 @@
 ﻿import tkinter as tk
 import sqlite3
+import math
+from temp import FunctionTable
 
 conn = sqlite3.connect("tutorial.db")
 cursor = conn.cursor()
@@ -188,9 +190,16 @@ class MainWindow(tk.Frame):
                 entry.grid(row=row_index + 1, column=col_index)
                 entry.insert(0, str(value))  # Insert user data into Entry widget
                 entry.configure(state="disabled")
-
-
+'''
 root = tk.Tk()
 root.eval('tk::PlaceWindow . center')
 WelcomeWindow(root)
 root.mainloop()
+'''
+def y(x):
+    return x**((math.cos(x)**2) / (math.e))
+    
+
+ft = FunctionTable(y, max_N=8, max_M=8)
+ft.display()
+ft.save_csv("cos_ln_table.csv")

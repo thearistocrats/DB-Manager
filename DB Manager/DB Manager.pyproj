@@ -24,6 +24,7 @@
     <Compile Include="DB_Manager.py" />
     <Compile Include="mass_renamer.py" />
     <Compile Include="file_metadata_editor.py" />
+    <Compile Include="temp.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="high level.txt" />
